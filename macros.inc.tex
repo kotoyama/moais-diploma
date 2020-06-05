@@ -1,0 +1,35 @@
+% Любимые команды
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Определение}
+
+\newcommand{\Code}[1]{\textbf{#1}}
+
+
+\newcommand{\myImage}[3]{
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{figures/#2}
+    \caption{#1}
+    \label{#3}
+\end{figure}
+}
+
+\makeatletter
+\newcommand\appendix@chapter[1]{%
+	\renewcommand{\thechapter}{\Asbuk{chapter}}%
+	\refstepcounter{chapter}%
+	\orig@chapter*{\thechapter~~#1}%
+	\addcontentsline{toc}{chapter}{\appendixname~\thechapter~~#1}%
+}
+\let\orig@chapter\chapter
+\g@addto@macro\appendix{\let\chapter\appendix@chapter}
+\makeatother
+
+\input listofitems
+\let\cpar\relax
+\def\Centerline#1{%
+	\setsepchar{\cpar}%
+	\readlist\clarg{#1}%
+	\foreachitem\z\in\clarg[]{\centerline{\z}}%
+}

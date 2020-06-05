@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents { 
+  function isSignedIn() {
+  	return request.auth.uid != null;
+  }
+  function isAdmin() {
+  	return isSignedIn() &&
+  	 get(/databases/$(database)/documents/userdata/
+  	  $(request.auth.uid)).data.isAdmin == true;
+  }
+  function isContentOwner() {
+    return request.auth.uid == resource.data.author;
+  }
+  match /books/{document=**} {
+    allow read: if true;
+    allow write: if isAdmin();
+  }
+  match /articles/{articleId} {
+    allow read: if true;
+    allow write: if isContentOwner() || isAdmin();
+  }
+  match /forum/{document=**} {
+    allow read: if true;
+    allow write: if isContentOwner() || isAdmin();
+  }
+  match /users/{userId} {
+    allow read: if true;
+    allow write: if request.auth.uid == userId || isAdmin();
+  }
+  match /bookParts/{document=**} {
+    allow read: if isSignedIn() &&
+     get(/databases/$(database)/documents/userdata/
+      $(request.auth.uid)).data.books[resource.data.bookId] != null;
+    allow write: if isAdmin();
+  }
+  match /userdata/{userId} {
+    allow read, write: if request.auth.uid == userId || isAdmin();
+  }
+  }
+}

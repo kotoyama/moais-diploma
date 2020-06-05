@@ -1,0 +1,36 @@
+{
+  "name": "linguium",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "Kate Maltseva <kotoyama@list.ru>",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
+    "lint": "eslint --ext .js,.vue src",
+    "build": "node build/build.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "firebase": "^7.8.0",
+    "vue": "^2.5.2",
+    "vue-axios": "^2.1.5",
+    "vue-material": "^1.0.0-beta-11",
+    "vue-router": "^3.0.1",
+    "vuelidate": "^0.7.5",
+    "vuex": "^3.1.2",
+    ...
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "css-loader": "^0.28.0",
+    "eslint": "^4.15.0",
+    "less": "^3.10.3",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    ...
+  },
+  ...
+}

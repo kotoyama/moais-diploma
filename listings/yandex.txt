@@ -1,0 +1,7 @@
+https://translate.yandex.net/api/v1.5/tr.json/translate
+  ? [key=<API-key>]
+  & [text=<translatable text>]
+  & [lang=<language>]
+  & [format=<text format>]
+  & [options=<translation options>]
+  & [callback=<callback function name>]

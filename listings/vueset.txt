@@ -1,0 +1,3 @@
+setUserName (state, payload) {
+  Vue.set(state.user, 'name', payload)
+}
